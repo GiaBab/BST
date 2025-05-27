@@ -4,30 +4,28 @@
 
 using namespace std;
 
-template <typename t> class Node
+template <typename T> class Node
 {
     private:
-        t item;
-        Node<t> left;
-        Node<t> rigth;
+        T* item;
+        Node<T>* left,* rigth;
     
     public:
-        Node(t item);
+        Node(T item);
         Node();
 
-        t get_item();
-        void set_item(t item);
+        T* get_item();
+        void set_item(T item);
 
-        Node<t>* get_left();
+        Node<T>* get_left();
         void set_left(Node* node);
 
-        Node<t>* get_rigth();
+        Node<T>* get_rigth();
         void set_rigth(Node* node);
 
         void delete_left();
         void delete_rigth();
 
-        bool is_null();
         bool is_left_null();
         bool is_rigth_null();
 

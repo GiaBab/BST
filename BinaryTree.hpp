@@ -3,28 +3,31 @@
 #include "Node.hpp"
 #include <iostream>
 
-template <typename t> class BinaryTree
+template <typename T> class BinaryTree
 {
     private:
-        Node<t>* root;
+        Node<T>* root;
 
-        Node<t>* add(Node<t>* root, t item);
+        Node<T>* add(Node<T>* root, T item);
 
-        Node<t>* find_min(Node<t>* root);
-        Node<t>* deleteItem(Node<t>* root, t item);
+        Node<T>* find_min(Node<T>* root);
+        Node<T>* deleteItem(Node<T>* root, T item);
+        void preorden(Node<T>* root);
 
     public:
-        BinaryTree(t item);
+        BinaryTree(T item);
         BinaryTree();
 
-        Node<t>* get_root();
+        Node<T>* get_root();
 
-        Node<t>* set_root(Node<t>* node);
+        Node<T>* set_root(Node<T>* node);
 
         bool is_null();
 
-        void add(t item);
-        void deleteItem(t item);
+        void add(T item);
+        void deleteItem(T item);
+
+        void preorden();
 };
 
 #endif //  TREE_H_INCLUDED

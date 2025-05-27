@@ -3,67 +3,65 @@
 
 using namespace std;
 
-template <typename t> Node<t>::Node(t item)
+template <typename T> Node<T>::Node(T item)
 {
-    this->item=item;
+    this->item=new T(item);
     this->left=this->rigth=nullptr;
 }
 
-template <typename t> Node<t>::Node()
+template <typename T> Node<T>::Node()
 {
     this->item=this->left=this->rigth=nullptr;
 }
 
-template <typename t> t Node<t>::get_item()
+template <typename T> T* Node<T>::get_item()
 {
-return this->item;
+    return this->item;
 }
-template <typename t> void Node<t>::set_item(t item)
+template <typename T> void Node<T>::set_item(T item)
 {
-    return this->item=item;
+    T* aux=this->get_item();
+    this->item=new T(item);
+    delete aux;
 }
 
-template <typename t> Node<t>* Node<t>::get_left()
+template <typename T> Node<T>* Node<T>::get_left()
 {
     return this->left;
 }
-template <typename t> void Node<t>::set_left(Node<t>* node)
+template <typename T> void Node<T>::set_left(Node<T>* node)
 {
-    return this->left=node;
+    this->left=node;
 }
 
-template <typename t> Node<t>* Node<t>::get_rigth()
+template <typename T> Node<T>* Node<T>::get_rigth()
 {
     return this->rigth;
 }
-template <typename t> void Node<t>::set_rigth(Node* node)
+template <typename T> void Node<T>::set_rigth(Node* node)
 {
-            return this->rigth=node;
+    this->rigth=node;
 }
 
-template <typename t> void Node<t>::delete_left()
+template <typename T> void Node<T>::delete_left()
 {
     delete this->left;
 }
-template <typename t> void Node<t>::delete_rigth()
+template <typename T> void Node<T>::delete_rigth()
 {
     delete this->rigth;
 }
 
-template <typename t> bool Node<t>::is_null()
-{
-    return this->item==nullptr;
-}
-template <typename t> bool Node<t>::is_left_null()
+template <typename T> bool Node<T>::is_left_null()
 {
     return this->left=nullptr;
 }
-template <typename t> bool Node<t>::is_rigth_null()
+template <typename T> bool Node<T>::is_rigth_null()
 {
     return this->rigth=nullptr;
 }
 
-template <typename t> void Node<t>::print()
+template <typename T> void Node<T>::print()
 {
     cout<<this->item;
 }
