@@ -3,15 +3,15 @@
 #include "Node.hpp"
 #include <iostream>
 
-template <typename t>
-
-class BinaryTree
+template <typename t> class BinaryTree
 {
     private:
         Node<t>* root;
 
         Node<t>* add(Node<t>* root, t item);
-        Node<t>* find_min(Node<t> root);
+
+        Node<t>* find_min(Node<t>* root);
+        Node<t>* deleteItem(Node<t>* root, t item);
 
     public:
         BinaryTree(t item);
@@ -21,7 +21,10 @@ class BinaryTree
 
         Node<t>* set_root(Node<t>* node);
 
+        bool is_null();
+
         void add(t item);
+        void deleteItem(t item);
 };
 
 #endif //  TREE_H_INCLUDED
