@@ -11,6 +11,8 @@ int main()
     abb.add(21);
     abb.add(75);
     abb.add(68);
+    abb.delete_item(50);
     abb.preorden();
+    abb.~BinaryTree();
     return 0;
 }

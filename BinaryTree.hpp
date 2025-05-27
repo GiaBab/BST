@@ -8,15 +8,14 @@ template <typename T> class BinaryTree
     private:
         Node<T>* root;
 
-        Node<T>* add(Node<T>* root, T item);
-
         Node<T>* find_min(Node<T>* root);
-        Node<T>* deleteItem(Node<T>* root, T item);
+        Node<T>* delete_item(Node<T>* root, T item);
         void preorden(Node<T>* root);
 
     public:
         BinaryTree(T item);
         BinaryTree();
+        ~BinaryTree();
 
         Node<T>* get_root();
 
@@ -25,7 +24,7 @@ template <typename T> class BinaryTree
         bool is_null();
 
         void add(T item);
-        void deleteItem(T item);
+        void delete_item(T item);
 
         void preorden();
 };

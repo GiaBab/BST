@@ -5,94 +5,122 @@
 
 template <typename T> BinaryTree<T>::BinaryTree(T item)
 {
-    this->root=new Node<T>(item);
+    root=new Node<T>(item);
 }
 template <typename T> BinaryTree<T>::BinaryTree()
 {
-    this->root=nullptr;
+    root=nullptr;
+}
+
+template <typename T> BinaryTree<T>::~BinaryTree()
+{
+    while(root->get_left()!=nullptr||root->get_right()!=nullptr)
+    {
+        if(root->get_left()!=nullptr)
+        {
+            delete_item(root->get_left()->get_item());
+        }
+        if(root->get_right()!=nullptr)
+        {
+            delete_item(root->get_right()->get_item());
+        }
+    }
+    delete root;
 }
 
 template <typename T> Node<T>* BinaryTree<T>::get_root()
 {
-    return this->root;
+    return root;
 }
 
 template <typename T> Node<T>* BinaryTree<T>::set_root(Node<T>* node)
 {
-    return this->root=node;
+    return root=node;
 }
 
 template <typename T> bool BinaryTree<T>::is_null()
 {
-    return this->root==nullptr;
+    return root==nullptr;
 }
 
-template <typename T> Node<T>* BinaryTree<T>::add(Node<T>* root, T item)
-{
-    if(root!=nullptr)
-    {
-        if(item<*(root->get_item()))
-        {
-            return add(root->get_left(), item);
-        }
-        else if(item>*(root->get_item()))
-        {
-            return add(root->get_rigth(), item);
-        }
-    }
-    return new Node<T>(item);
-}
 template <typename T> void BinaryTree<T>::add(T item)
 {
-    this->add(this->root, item);
+    Node<T>* aux= root;
+    bool flag=true;
+    while(aux!=nullptr&&flag)
+    {
+        if(item<aux->get_item())
+        {
+            if(aux->is_left_null())
+            {
+                aux->set_left(new Node<T>(item));
+                flag=false;
+            }
+            aux=aux->get_left();
+        }
+        else if(item>aux->get_item())
+        {
+            if(aux->is_right_null())
+            {
+                aux->set_right(new Node<T>(item));
+                flag=false;
+            }
+            aux=aux->get_right();
+        }
+    }
+    if(aux==nullptr)
+    {
+        aux=new Node<T>(item);
+    }
 }
 
 template <typename T> Node<T>* BinaryTree<T>::find_min(Node<T>* root)
 {
-    while (root->left != nullptr) root = root->left;
+    while (root->get_left()!=nullptr) root = root->get_left();
     return root;
 }
-template <typename T> Node<T>* BinaryTree<T>::deleteItem(Node<T>* root, T item)
+
+template <typename T> Node<T>* BinaryTree<T>::delete_item(Node<T>* root, T item)
 {
     if (root == nullptr) return nullptr;
 
-        if (root->item == item) {
-            if (root->left == nullptr && root->rigth == nullptr) {
+        if (root->get_item() == item) {
+            if (root->is_left_null() && root->is_right_null()) {
                 delete root;
                 return nullptr;
             }
-            if (root->left == nullptr) {
-                Node<T>* temp = root->rigth;
+            if (root->is_left_null()) {
+                Node<T>* temp = root->get_right();
                 delete root;
                 return temp;
             }
-            if (root->rigth == nullptr) {
-                Node<T>* temp = root->left;
+            if (root->is_right_null()) {
+                Node<T>* temp = root->get_left();
                 delete root;
                 return temp;
             }
 
-            Node<T>* successor = findMin(root->rigth);
-            root->item = successor->item;
-            root->rigth = deleteItem(root->rigth, successor->item);
+            Node<T>* successor = find_min(root->get_right());
+            root->set_item(successor->get_item());
+            root->set_right(delete_item(root->get_right(), successor->get_item()));
         } else {
-            root->left = deleteItem(root->left, item);
-            root->rigth = deleteItem(root->rigth, item);
+            root->set_left(delete_item(root->get_left(), item));
+            root->set_right(delete_item(root->get_right(), item));
         }
         return root;
 }
-template <typename T> void BinaryTree<T>::deleteItem(T item)
+template <typename T> void BinaryTree<T>::delete_item(T item)
 {
-    this->deleteItem(this->root, item);
+    this->delete_item(this->root, item);
 }
 
 template <typename T> void BinaryTree<T>::preorden(Node<T>* root)
 {
-    if(this->root!=nullptr)
+    if(root!=nullptr)
     {
-        cout<<*(root->get_item());
+        cout<<root->get_item()<<" - ";
         preorden(root->get_left());
-        preorden(root->get_rigth());
+        preorden(root->get_right());
     }
 }
 

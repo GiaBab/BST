@@ -5,60 +5,58 @@ using namespace std;
 
 template <typename T> Node<T>::Node(T item)
 {
-    this->item=new T(item);
-    this->left=this->rigth=nullptr;
+    this->item=item;
+    this->left=this->right=nullptr;
 }
 
 template <typename T> Node<T>::Node()
 {
-    this->item=this->left=this->rigth=nullptr;
+    this->item=this->left=this->right=nullptr;
 }
 
-template <typename T> T* Node<T>::get_item()
+template <typename T> T Node<T>::get_item()
 {
-    return this->item;
+    return item;
 }
 template <typename T> void Node<T>::set_item(T item)
 {
-    T* aux=this->get_item();
-    this->item=new T(item);
-    delete aux;
+    this->item=item;
 }
 
 template <typename T> Node<T>* Node<T>::get_left()
 {
-    return this->left;
+    return left;
 }
 template <typename T> void Node<T>::set_left(Node<T>* node)
 {
-    this->left=node;
+    left=node;
 }
 
-template <typename T> Node<T>* Node<T>::get_rigth()
+template <typename T> Node<T>* Node<T>::get_right()
 {
-    return this->rigth;
+    return right;
 }
-template <typename T> void Node<T>::set_rigth(Node* node)
+template <typename T> void Node<T>::set_right(Node* node)
 {
-    this->rigth=node;
+    right=node;
 }
 
 template <typename T> void Node<T>::delete_left()
 {
-    delete this->left;
+    delete left;
 }
-template <typename T> void Node<T>::delete_rigth()
+template <typename T> void Node<T>::delete_right()
 {
-    delete this->rigth;
+    delete right;
 }
 
 template <typename T> bool Node<T>::is_left_null()
 {
-    return this->left=nullptr;
+    return left==nullptr;
 }
-template <typename T> bool Node<T>::is_rigth_null()
+template <typename T> bool Node<T>::is_right_null()
 {
-    return this->rigth=nullptr;
+    return right==nullptr;
 }
 
 template <typename T> void Node<T>::print()
