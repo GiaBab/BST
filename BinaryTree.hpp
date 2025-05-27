@@ -5,7 +5,7 @@
 
 template <typename t>
 
-class BinarySearchTree
+class BinaryTree
 {
     private:
         Node<t>* root;
@@ -14,8 +14,8 @@ class BinarySearchTree
         Node<t>* find_min(Node<t> root);
 
     public:
-        BinarySearchTree(t item);
-        BinarySearchTree();
+        BinaryTree(t item);
+        BinaryTree();
 
         Node<t>* get_root();
 

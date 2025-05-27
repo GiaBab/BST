@@ -1,26 +1,26 @@
 #include "BinarySearchTree.hpp"
 #include <iostream>
 
-template <typename t> BinarySearchTree<t>::BinarySearchTree(t item)
+template <typename t> BinaryTree<t>::BinaryTree(t item)
 {
     this->root=new Node<t>(item);
 }
-template <typename t> BinarySearchTree<t>::BinarySearchTree()
+template <typename t> BinaryTree<t>::BinaryTree()
 {
     this->root=nullptr;
 }
 
-template <typename t> Node<t>* BinarySearchTree<t>::get_root()
+template <typename t> Node<t>* BinaryTree<t>::get_root()
 {
     return this->root;
 }
 
-template <typename t> Node<t>* BinarySearchTree<t>::set_root(Node<t>* node)
+template <typename t> Node<t>* BinaryTree<t>::set_root(Node<t>* node)
 {
     return this->root=node;
 }
 
-template <typename t> Node<t>* BinarySearchTree<t>::add(Node<t>* root, t item)
+template <typename t> Node<t>* BinaryTree<t>::add(Node<t>* root, t item)
 {
     if(root->is_null)
     {
@@ -36,12 +36,12 @@ template <typename t> Node<t>* BinarySearchTree<t>::add(Node<t>* root, t item)
     }
     return root;
 }
-template <typename t> void BinarySearchTree<t>::add(t item)
+template <typename t> void BinaryTree<t>::add(t item)
 {
     this->add(this->root, item);
 }
 
-template <typename t> Node<t>* BinarySearchTree<t>::find_min(Node<t> root)
+template <typename t> Node<t>* BinaryTree<t>::find_min(Node<t> root)
 {
     while (root->izq != nullptr) root = root->izq;
     return root;
