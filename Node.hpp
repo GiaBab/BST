@@ -1,8 +1,10 @@
 #ifndef NODE_H_INCLUDED
 #define NODE_H_INCLUDED
-template <typename t>
+#include <iostream>
 
-class Node<t>
+using namespace std;
+
+template <typename t> class Node
 {
     private:
         t item;
@@ -11,15 +13,16 @@ class Node<t>
     
     public:
         Node(t item);
+        Node();
 
         t get_item();
-        t set_item();
+        void set_item(t item);
 
         Node<t>* get_left();
-        Node<t>* set_left(Node* node);
+        void set_left(Node* node);
 
         Node<t>* get_rigth();
-        Node<t>* set_rigth(Node* node);
+        void set_rigth(Node* node);
 
         void delete_left();
         void delete_rigth();
@@ -27,7 +30,8 @@ class Node<t>
         bool is_null();
         bool is_left_null();
         bool is_rigth_null();
-}
 
+        void print();
+};
 
 #endif // NODE_H_INCLUDED
