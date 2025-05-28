@@ -25,7 +25,7 @@ template <typename T> BinaryTree<T>::~BinaryTree()
             delete_item(root->get_right()->get_item());
         }
     }
-    delete root;
+    delete_item(root->get_item());
 }
 
 template <typename T> Node<T>* BinaryTree<T>::get_root()
